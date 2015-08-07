@@ -20,8 +20,8 @@
 
     // define model ==================
     var Listing = mongoose.model('Listing', {
-        price : 500
-    }
+        text : String
+    });
 
     // Routes ===========
 
@@ -36,14 +36,14 @@
     app.post('/api/listings', function(req, res) {
 
         Listing.create({
-            price : req.body.price, 
+            price : req.body.text, 
             done : false
-        }, function(err, listing){
+        }, function(err, listing) {
             if(err)
-                res.send(err)
+                res.send(err);
 
             Listing.find(function(err, listings) {
-                if (err) {
+                if (err)
                     res.send(err)
                 res.json(listings);
             });
